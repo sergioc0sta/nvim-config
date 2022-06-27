@@ -1,82 +1,73 @@
-" super cenas mistas
-set hidden " you can change other files before you save current file
-set number " show numbers of lines
-set relativenumber " show number relative of current line"set mouse=a "mouse availabel
-set inccommand=split "find with regex and have preview where the code are changing
-set splitright
-set splitbelow
-
-"define my leader key and made my preference config
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeIgnore = []
-let g:NERDTreeStatusline = ''
-" Automaticaly close nvim if NERDTree is only thing left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" Toggle
-
+set relativenumber
+set inccommand=split
+set nocompatible            " disable compatibility to old-time vi
+set showmatch               " show matching AA
+set ignorecase              " case insensitive 
+set mouse=v                 " middle-click paste with 
+set hlsearch                " highlight search 
+set incsearch               " incremental search
+set tabstop=4               " number of columns occupied by a tab 
+set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
+set expandtab               " converts tabs to white space
+set shiftwidth=4            " width for autoindents
+set autoindent              " indent a new line the same amount as the line just typed
+set number                  " add line numbers
+set wildmode=longest,list   " get bash-like tab completions
+"filetype plugin indent on   "allow auto-indenting depending on file type
+syntax on                   " syntax highlighting
+set mouse=a                 " enable mouse click
+set clipboard=unnamedplus   " using system clipboard
+filetype plugin on
+set ttyfast                 " Speed up scrolling in Vim
+" set spell                 " enable spell check (may need to download language package)
+" set noswapfile            " disable creating swap file
+" set backupdir=~/.cache/vim " Directory to store backup files.
 let mapleader="\<space>"
 nnoremap <leader>; A;<esc>
 nnoremap <leader>w :w<esc>
 nnoremap <leader>q :q<esc>
+nnoremap <leader>qa :q!<esc>
 nnoremap <leader>ns :vsplit<CR>
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
-nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
-nnoremap <c-p> :Files<cr>
-nnoremap <c-f> :Ag<space>
+nnoremap <leader>so :source ~/.config/nvim/init.vim<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>b :NERDTreeToggle<CR>
-nnoremap <leader>t :call OpenTerminal()<CR>
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
-nnoremap <leader>6 6gt
-nnoremap <leader>7 7gt
-nnoremap <leader>8 8gt
-nnoremap <leader>9 9gt
-nnoremap <leader>0 :tablast<cr>
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit'
-  \}
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
-let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 
-" start terminal in insert mode
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-
-function! OpenTerminal()
-  split term://bash
-  resize 10
-endfunction
-
-tnoremap <Esc> <C-\><C-n>
-" use alt+hjkl to move between split/vsplit panels
-" add plugins
-call plug#begin()
-
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'terryma/vim-multiple-cursors'
-Plug 'sheerun/vim-polyglot'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'w0rp/ale'
-Plug 'cohama/lexima.vim'
-Plug 'honza/vim-snippets'
-Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/nerdtree'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-"Plug 'honza/vim-snippets'
-"Plug 'SirVer/ultisnips'
-
+call plug#begin("~/.vim/plugged")
+ Plug 'dracula/vim'
+ Plug 'ryanoasis/vim-devicons'
+ Plug 'SirVer/ultisnips'
+ Plug 'honza/vim-snippets'
+ Plug 'scrooloose/nerdtree'
+ Plug 'preservim/nerdtree'
+ Plug 'preservim/nerdcommenter'
+ Plug 'mhinz/vim-startify'
+ Plug 'neoclide/coc.nvim', {'branch': 'release'}
+ Plug 'vim-airline/vim-airline'
+ Plug 'vim-airline/vim-airline-themes'
+ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+ Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
+if(has("termguicolors"))
+    set termguicolors
+endif
+
 syntax enable
-colorscheme dracula
+set splitright
+set splitbelow
 set background=dark
-"let g:UltiSnipsEditSplit="vertical"
-"let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
+colorscheme dracula
+
+" move to lua file
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
