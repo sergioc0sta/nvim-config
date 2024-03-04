@@ -22,14 +22,10 @@ M.general = {
     ["<C-l>"] = { "<C-w>l", "Window right" },
     ["<C-j>"] = { "<C-w>j", "Window down" },
     ["<C-k>"] = { "<C-w>k", "Window up" },
-    
 
     -- save
-    ["<leader>w"] = { "<cmd> w <CR>", "Save file" },
-    -- exit
-    ["<leader>q"] = {"<cmd> q <CR>", "Exit file"},
-    --save and exit
-    ["<leader>wq"] = {"<cmd> wq <CR>", "Exit and save"},
+    ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
+
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
 
@@ -218,7 +214,7 @@ M.lspconfig = {
       "Goto next",
     },
 
-    ["<leader>qq"] = {
+    ["<leader>q"] = {
       function()
         vim.diagnostic.setloclist()
       end,
