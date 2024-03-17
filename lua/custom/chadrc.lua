@@ -1,8 +1,9 @@
 local M = {}
 local highlights = require "custom.highlights"
 
+
 M.ui = {
-  
+  colorscheme = "catppuccino",
   hl_override = highlights.override,
   hl_add = highlights.add,
   statusline = {

@@ -9,7 +9,9 @@ M.general = {
     ["<leader>q"] = {"<cmd> q <CR>", "Exit file"},
     ["<leader>pr"] = {"<cmd>Neoformat<CR>", "Format" },
     ["<leader>wq"] = {"<cmd> wq <CR>", "Exit and save"},
-    ["<leader>e"] = {"<cmd> NvimTreeToggle <CR>", "Toggle Tree"},
+    ["<leader>b"] = {"<cmd> NvimTreeToggle <CR>", "Toggle Tree"},
+    ["<leader>sl"] ={"<cmd> tabNext <CR>", "Next tab"},
+    ["<leader>sh"] ={"<cmd> tabprevious <CR>", "Previoues tab"},
     ["r"] = {"<cmd> redo <CR>", "Rendo"},
   },
   v = {
