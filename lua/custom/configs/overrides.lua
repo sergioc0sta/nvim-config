@@ -31,7 +31,6 @@ M.copilot = {
 
 M.treesitter = {
   ensure_installed = {
-    "vim",
     "lua",
     "html",
     "css",
@@ -52,22 +51,12 @@ M.treesitter = {
 
 M.mason = {
   ensure_installed = {
-    -- lua stuff
     "lua-language-server",
     "stylua",
-
-    -- web dev stuff
     "css-lsp",
     "html-lsp",
     "typescript-language-server",
     "prettier",
-
-    -- c/cpp stuff
-    "clangd",
-    "clang-format",
-
-    -- shell stuff
-    "shfmt",
   },
 }
 
